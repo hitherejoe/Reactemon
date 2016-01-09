@@ -1,4 +1,4 @@
-# Reactemon
+# Reactémon
 ===========
 
-A React-Native Pokedex for Android/iOS. More info coming soon.
+A React-Native Pokédex for Android/iOS. More info coming soon.
