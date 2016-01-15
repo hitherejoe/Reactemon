@@ -6,6 +6,8 @@ var colors = require( './resources/colors' ).mainScreen;
 var strings = require( './resources/strings' ).mainScreen;
 var styles = require( './resources/styles' ).mainScreen;
 
+var dataManager = require( './data/dataManager' );
+
 var drawerRef = 'DRAWER';
 
 var React = require('react-native');
@@ -38,23 +40,10 @@ var Reactemon = React.createClass({
   },
 
   componentDidMount: function() {
-    this.fetchData();
-  },
-
-  toTitleCase: function(str) {
-    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-  },
-
-  fetchData: function() {
-    fetch(REQUEST_URL)
-      .then((response) => response.json())
-      .then((responseData) => {
-        this.setState({
-          dataSource: this.state.dataSource.cloneWithRows(responseData.pokemon),
-          loaded: true,
-        });
-      })
-      .catch((error) => {
+    var self = this;
+    dataManager.fetchListOfPokemon(function handleGetStravaClub( error, data ) {
+      if ( error ) {
+        console.error( error );
         Alert.alert(
             'Oops',
             'There was an error retrieving the data',
@@ -62,7 +51,18 @@ var Reactemon = React.createClass({
               {text: 'OK', onPress: () => console.log('OK Pressed!')},
             ]
           )
-      });
+      } else {
+
+        self.setState({
+            dataSource: self.state.dataSource.cloneWithRows(data.pokemon),
+            loaded: true,
+          });
+      }
+  });
+  },
+
+  toTitleCase: function(str) {
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
   },
 
   openDrawer:function() {
