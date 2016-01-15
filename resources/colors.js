@@ -1,4 +1,3 @@
-
 var mainScreen;
 
 mainScreen = {
