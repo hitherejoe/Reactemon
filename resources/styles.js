@@ -45,6 +45,11 @@ mainScreen = {
     borderRadius: 50,
     width: 78,
     margin: 16,
+  },
+  toolbarIcon: {
+    height: 24,
+    width: 24,
+    marginLeft: 8,
   }
 };
 

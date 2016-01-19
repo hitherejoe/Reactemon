@@ -5,6 +5,7 @@ var ProgressBar = require('ProgressBarAndroid');
 var colors = require( './resources/colors' ).mainScreen;
 var strings = require( './resources/strings' ).mainScreen;
 var styles = require( './resources/styles' ).mainScreen;
+var StatusBarAndroid = require('react-native-android-statusbar');
 
 var dataManager = require( './data/dataManager' );
 
@@ -23,8 +24,6 @@ var {
   View,
 } = React;
 
-var REQUEST_URL = 'http://pokeapi.co/api/v1/pokedex/1/';
-
 var Reactemon = React.createClass({
 
   getInitialState: function() {
@@ -40,8 +39,10 @@ var Reactemon = React.createClass({
   },
 
   componentDidMount: function() {
+  StatusBarAndroid.setHexColor(colors.toolbarBackgroundDark);
+
     var self = this;
-    dataManager.fetchListOfPokemon(function handleGetStravaClub( error, data ) {
+    dataManager.fetchListOfPokemon(function handleFetchListOfPokemon( error, data ) {
       if ( error ) {
         console.error( error );
         Alert.alert(
@@ -95,7 +96,7 @@ var Reactemon = React.createClass({
           <ToolbarAndroid
             navIcon={require('./images/pokeball.png')}
             onIconClicked={this.openDrawer}
-            title="Reactemon"
+            title={strings.titleText}
             style={styles.toolbar}
             {...this.state.colorProps}/>
 
@@ -117,7 +118,7 @@ var Reactemon = React.createClass({
   renderLoadingView: function() {
     return (
       <View style={styles.container}>
-        <ProgressBar styleAttr="Inverse" />
+        <ProgressBar progressTintColor="yellow" />
       </View>
     );
   },

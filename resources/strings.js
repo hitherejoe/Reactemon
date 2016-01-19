@@ -2,7 +2,7 @@
 var mainScreen;
 
 mainScreen = {
-	titleText: 'Reactemon'
+	titleText: 'Reactémon'
 };
 
 module.exports = {

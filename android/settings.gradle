@@ -1,3 +1,6 @@
 rootProject.name = 'Reactemon'
 
 include ':app'
+
+include ':react-native-android-statusbar'
+project(':react-native-android-statusbar').projectDir = new File(settingsDir, '../node_modules/react-native-android-statusbar')

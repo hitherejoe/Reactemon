@@ -6,6 +6,9 @@
     "start": "react-native start"
   },
   "dependencies": {
-    "react-native": "^0.17.0"
+    "react-native": "^0.17.0",
+    "react-native-android-statusbar": "^0.1.2",
+    "react-native-drawer": "^1.13.0",
+    "react-native-navbar": "^1.1.7"
   }
 }
